@@ -3,6 +3,7 @@ import axios from 'axios'
 import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert';
 import 'bootstrap/dist/css/bootstrap.min.css';
+// import Weather from './components/Weather';
 
 
 export class App extends Component {
@@ -16,6 +17,8 @@ export class App extends Component {
       ErrorMSG: '',
       error:false,
       show:false,
+      // weather: false,
+      // weatherInfo: {},
     }
   }
   
@@ -28,26 +31,39 @@ export class App extends Component {
 
   submitData=async (e)=>{
     e.preventDefault()
+    // let weatherUrl = `http://localhost:3000/weather?city_name=${this.state.displayName.toLowerCase()}`;
+
     try{ let  response= await axios.get(`https://eu1.locationiq.com/v1/search.php?key=pk.e266821f0ad39e21a46098fffe81ff92&city=${this.state.displayName}&format=json
     
     `)
    
+    // let weatherAxios = await axios.get(`http://localhost:3000/weather?city_name=${this.state.displayName.toLowerCase()}
+    
+    // `);
+
+
     this.setState({
       displayName:  response.data[0].display_name,
       longitude:  response.data[0].lon,
       latitude:  response.data[0].lat, 
-      show: true
-      
+        show: true,
+      // weatherInformation: weatherAxios.data,
+      // weather: true,
       
     })
     }
     catch(ErrorMSG){
       this.setState({
         ErrorMSG: 'ERROR :Please Enter City Name',
-        error: true
+        error: true,
+        // weather: false,
       })
     }
   }
+
+
+
+
   render() {
     return (
       <div>
@@ -79,11 +95,20 @@ export class App extends Component {
 </Card>
      
         }
+        
+        {/* {this.state.weather &&
+        <Weather
+         weather={this.state.weatherInformation}
+         cityName= {this.state.display_name}
+        />
+        } */}
+        
 
         {(this.state.error) &&
         <Alert variant={'danger'}>{this.state.ErrorMSG} </Alert>
         
         }
+
         
       </div>
     )
