@@ -1,34 +1,43 @@
-import React, { Component } from 'react'
-import Table  from 'react-bootstrap/Table'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React from 'react';
+import Card from 'react-bootstrap/Card';
 
-export class Weather extends Component {
+
+class WeatherCard extends React.Component {
+
     render() {
+  
         return (
-            <div>
-               
-               <Table style={{ width: '45rem' }}  bordered hover>
-                    <thead>
-                        <tr>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+            <>
+                {this.props.display && <Card style={{ width: '25rem' , margin:"30px" , padding: "10px", backgroundColor:" #e0e0d1" }}>
+                    <Card.Body>
+                        <Card.Title>
+                         Weather Data
+                        </Card.Title>
+                        <Card.Text>
+                            Date: {this.props.weatherData[0].date}<br/>
+                            Description: {this.props.weatherData[0].description}<br/>
+                            Date: {this.props.weatherData[1].date}<br/>
+                            Description: {this.props.weatherData[1].description}<br/>
+                            Date: {this.props.weatherData[2].date}<br/>
+                            Description: {this.props.weatherData[2].description}<br/>
 
-                        <tr>
-                            <td>{this.props.weather[0].description}</td>
-                        </tr>
-                        <tr>
-                            <td>{this.props.weather[1].description}</td>
-                        </tr>     <tr>
-                            <td>{this.props.weather[2].description}</td>
-                        </tr>
-                     
-                    </tbody>
-                </Table> 
-            </div>
+                        </Card.Text>
+                    </Card.Body>
+                </Card>}
+                {this.props.display ===false && <Card style={{ width: '25rem' , margin:"30px" , padding: "10px", backgroundColor:" #e0e0d1" }}>
+                    <Card.Body>
+                        <Card.Title>
+                         Weather Data: {this.props.weatherData.status}
+                        </Card.Title>
+                        <Card.Text>
+                         {this.props.weatherData.data}
+                        </Card.Text>
+                    </Card.Body>
+                </Card>}
+
+            </>
         )
     }
 }
 
-export default Weather;
+export default WeatherCard;
