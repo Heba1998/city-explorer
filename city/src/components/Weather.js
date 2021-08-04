@@ -1,43 +1,18 @@
-import React from 'react';
-import Card from 'react-bootstrap/Card';
-
-
-class WeatherCard extends React.Component {
-
-    render() {
   
-        return (
-            <>
-                {this.props.display && <Card style={{ width: '25rem' , margin:"30px" , padding: "10px", backgroundColor:" #e0e0d1" }}>
-                    <Card.Body>
-                        <Card.Title>
-                         Weather Data
-                        </Card.Title>
-                        <Card.Text>
-                            Date: {this.props.weatherData[0].date}<br/>
-                            Description: {this.props.weatherData[0].description}<br/>
-                            Date: {this.props.weatherData[1].date}<br/>
-                            Description: {this.props.weatherData[1].description}<br/>
-                            Date: {this.props.weatherData[2].date}<br/>
-                            Description: {this.props.weatherData[2].description}<br/>
+import React from 'react'
+import WeatherDay from './WeatherDay'
 
-                        </Card.Text>
-                    </Card.Body>
-                </Card>}
-                {this.props.display ===false && <Card style={{ width: '25rem' , margin:"30px" , padding: "10px", backgroundColor:" #e0e0d1" }}>
-                    <Card.Body>
-                        <Card.Title>
-                         Weather Data: {this.props.weatherData.status}
-                        </Card.Title>
-                        <Card.Text>
-                         {this.props.weatherData.data}
-                        </Card.Text>
-                    </Card.Body>
-                </Card>}
+export default function Weather(props) {
+    return (
+        <div className="weather-container">
+            {props.weatherData.map((item, idx) => {
+                return <WeatherDay
+                key={idx}
+                description={item.description}
+                date={item.date}
+                />
+            })}
 
-            </>
-        )
-    }
+        </div>
+    )
 }
-
-export default WeatherCard;
