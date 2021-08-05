@@ -77,14 +77,14 @@ export class Main extends Component {
         <Card.Img variant="top" src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_KEY}&center=${this.state.cityName.lat},${this.state.cityName.lon}`} alt='' style={{ borderRadius: '10px' , height : '400px'}} />
         <Card.Body>
            <Card.Title>
-            {this.state.cityName.display_name}
+          🗺  {this.state.cityName.display_name}
         
            </Card.Title>
             <Card.Text>
-                latitude:  {this.state.cityName.lat}
+               📌 latitude:  {this.state.cityName.lat}
                 <br />
                 <br/>
-                longitude: {this.state.cityName.lon}
+               📌 longitude: {this.state.cityName.lon}
                 <br/>
                 <br/>
             </Card.Text>
