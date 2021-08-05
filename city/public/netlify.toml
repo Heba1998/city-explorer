@@ -1,0 +1,10 @@
+[build]
+command = "npm run build"
+publish = "/build"
+base ="/"
+
+
+[[redirects]]
+/*    /index.html   200
+https://tinyjpg.com/
+https://tinypng.com/
